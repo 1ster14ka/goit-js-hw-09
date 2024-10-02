@@ -1,3 +1,7 @@
+import SimpleLightbox from 'simplelightbox';
+
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 const images = [
   {
     preview:
@@ -72,9 +76,6 @@ const list = document.querySelector('.gallery');
 
 list.innerHTML = res.join('');
 
-import SimpleLightbox from 'simplelightbox';
-
-import 'simplelightbox/dist/simple-lightbox.min.css';
 const lightbox = new SimpleLightbox('.gallery a', {
   captions: true,
   captionsData: 'alt',
