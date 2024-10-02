@@ -8,12 +8,13 @@ const localStorageKey = 'feedback-form-state';
 const form = document.querySelector('.feedback-form');
 const objLocalStorage = JSON.parse(localStorage.getItem(localStorageKey)) ?? '';
 
-let email = objLocalStorage.email !== undefined ? objLocalStorage.email : '';
-let message =
-  objLocalStorage.message !== undefined ? objLocalStorage.message : '';
+if (objLocalStorage.email || objLocalStorage.message) {
+  form.elements.email.value = objLocalStorage.email ?? '';
+  form.elements.message.value = objLocalStorage.message ?? '';
 
-form.elements.email.value = email;
-form.elements.message.value = message;
+  formData.email = objLocalStorage.email ?? '';
+  formData.message = objLocalStorage.message ?? '';
+}
 
 form.addEventListener('input', saveToLocalStorage);
 
@@ -35,8 +36,13 @@ form.addEventListener('submit', () => {
     alert('Fill please all fields');
     return;
   }
+
   console.log(formData);
 
+  formData.email = email;
+  formData.message = message;
+
   localStorage.removeItem(localStorageKey);
+
   form.reset();
 });
